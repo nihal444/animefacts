@@ -13,7 +13,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: auto;
             background: white;
             padding: 20px;
@@ -26,8 +26,13 @@
             color: #333;
         }
 
+        #facts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
         .fact {
-            margin: 15px 0;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -111,12 +116,10 @@
 
         const factsContainer = document.getElementById('facts-container');
         const showMoreButton = document.getElementById('show-more');
-        const initialDisplayCount = 5; // Number of facts to display initially
-        let currentDisplayCount = initialDisplayCount;
+        let currentDisplayCount = 5; // Number of facts to display initially
 
         // Function to display facts
         function displayFacts(count) {
-            factsContainer.innerHTML = ''; // Clear existing facts
             const factsToDisplay = funFacts.slice(0, count);
             factsToDisplay.forEach(fact => {
                 const factDiv = document.createElement('div');
@@ -131,7 +134,7 @@
 
         // Show more facts on button click
         showMoreButton.addEventListener('click', () => {
-            currentDisplayCount += initialDisplayCount;
+            currentDisplayCount += 5; // Increment by 5
             displayFacts(currentDisplayCount);
             // Hide button if all facts are displayed
             if (currentDisplayCount >= funFacts.length) {
