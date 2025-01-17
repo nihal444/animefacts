@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Fun Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .fact {
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+
+        .fact h2 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .fact p {
+            margin: 5px 0 0;
+        }
+
+        #show-more {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #show-more:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fun Facts About Anime</h1>
+        <div id="facts-container"></div>
+        <button id="show-more">Show More</button>
+    </div>
+    <script>
+        const funFacts = [
+            {
+                "fact": "Origins of Anime",
+                "description": "The term 'anime' is derived from the English word 'animation.' In Japan, it refers to all forms of animation, but outside Japan, it specifically refers to Japanese animation."
+            },
+            {
+                "fact": "Astro Boy",
+                "description": "Often considered the first popular anime series, 'Astro Boy' (Tetsuwan Atom) was created by Osamu Tezuka in 1963 and is credited with establishing many conventions of the anime style."
+            },
+            {
+                "fact": "Studio Ghibli's Influence",
+                "description": "Studio Ghibli, co-founded by Hayao Miyazaki and Isao Takahata, has produced some of the most critically acclaimed animated films, including 'Spirited Away,' which won the Academy Award for Best Animated Feature in 2003."
+            },
+            {
+                "fact": "Anime Conventions",
+                "description": "Anime conventions are held worldwide, attracting thousands of fans. Events like Anime Expo in Los Angeles and Comiket in Tokyo are among the largest, featuring panels, merchandise, and cosplay."
+            },
+            {
+                "fact": "Cosplay Culture",
+                "description": "Cosplay, short for 'costume play,' originated in Japan and has become a global phenomenon. Fans dress up as their favorite anime characters, often creating intricate costumes."
+            },
+            {
+                "fact": "Diverse Genres",
+                "description": "Anime encompasses a wide range of genres, from action and adventure to romance, horror, and slice of life. There’s something for everyone, regardless of age or interests."
+            },
+            {
+                "fact": "Manga Connection",
+                "description": "Many anime series are adaptations of manga (Japanese comic books). Popular titles like 'Naruto,' 'One Piece,' and 'Attack on Titan' started as manga before being adapted into anime."
+            },
+            {
+                "fact": "Voice Acting",
+                "description": "Voice actors (seiyuu) in anime often have a significant fan following. Some seiyuu have even launched successful music careers, like LiSA, known for her work on 'Demon Slayer.'"
+            },
+            {
+                "fact": "Cultural References",
+                "description": "Anime often incorporates elements of Japanese culture, folklore, and history, providing viewers with insights into Japan's traditions and societal norms."
+            },
+            {
+                "fact": "Global Popularity",
+                "description": "Anime has gained immense popularity outside Japan, with streaming services like Crunchyroll and Netflix investing in anime production and distribution, making it accessible to a global audience."
+            }
+        ];
+
+        const factsContainer = document.getElementById('facts-container');
+        const showMoreButton = document.getElementById('show-more');
+        const initialDisplayCount = 5; // Number of facts to display initially
+        let currentDisplayCount = initialDisplayCount;
+
+        // Function to display facts
+        function displayFacts(count) {
+            factsContainer.innerHTML = ''; // Clear existing facts
+            const factsToDisplay = funFacts.slice(0, count);
+            factsToDisplay.forEach(fact => {
+                const factDiv = document.createElement('div');
+                factDiv.classList.add('fact');
+                factDiv.innerHTML = `<h2>${fact.fact}</h2><p>${fact.description}</p>`;
+                factsContainer.appendChild(factDiv);
+            });
+        }
+
+        // Show initial facts
+        displayFacts(currentDisplayCount);
+
+        // Show more facts on button click
+        showMoreButton.addEventListener('click', () => {
+            currentDisplayCount += initialDisplayCount;
+            displayFacts(currentDisplayCount);
+            // Hide button if all facts are displayed
+            if (currentDisplayCount >= funFacts.length) {
+                showMoreButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
