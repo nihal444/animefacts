@@ -6,24 +6,42 @@
     <title>Anime Fun Facts</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .task-bar {
+            background-color: #007bff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-bar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .task-bar img {
+            height: 40px;
         }
 
         .container {
+            flex: 1;
             max-width: 1200px;
             margin: auto;
-            background: white;
+            background: #2a2a2a;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
         }
 
         .search-container {
@@ -38,6 +56,8 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
+            background-color: #333;
+            color: #fff;
         }
 
         #facts-container {
@@ -48,26 +68,26 @@
 
         .fact {
             padding: 15px;
-            border: 1px solid #ddd;
+            border: 1px solid #444;
             border-radius: 5px;
-            background-color: #fafafa;
+            background-color: #3a3a3a;
             transition: transform 0.2s;
         }
 
         .fact:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
         }
 
         .fact h2 {
             margin: 0;
             font-size: 1.2em;
-            color: #007bff;
+            color: #00ffcc;
         }
 
         .fact p {
             margin: 5px 0 0;
-            color: #555;
+            color: #ccc;
         }
 
         #show-more {
@@ -88,8 +108,11 @@
     </style>
 </head>
 <body>
+    <div class="task-bar">
+        <h1>Anime Fun Facts</h1>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Anime_Logo.svg/1200px-Anime_Logo.svg.png" alt="Anime Logo">
+    </div>
     <div class="container">
-        <h1>Fun Facts About Anime</h1>
         <div class="search-container">
             <input type="text" id="search-bar" placeholder="Search for a fact...">
         </div>
