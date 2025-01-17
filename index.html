@@ -26,6 +26,20 @@
             color: #333;
         }
 
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-container input {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
         #facts-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -33,19 +47,27 @@
         }
 
         .fact {
-            padding: 10px;
+            padding: 15px;
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #fafafa;
+            transition: transform 0.2s;
+        }
+
+        .fact:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .fact h2 {
             margin: 0;
             font-size: 1.2em;
+            color: #007bff;
         }
 
         .fact p {
             margin: 5px 0 0;
+            color: #555;
         }
 
         #show-more {
@@ -57,6 +79,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
         }
 
         #show-more:hover {
@@ -67,6 +90,9 @@
 <body>
     <div class="container">
         <h1>Fun Facts About Anime</h1>
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search for a fact...">
+        </div>
         <div id="facts-container"></div>
         <button id="show-more">Show More</button>
     </div>
@@ -116,10 +142,12 @@
 
         const factsContainer = document.getElementById('facts-container');
         const showMoreButton = document.getElementById('show-more');
+        const searchBar = document.getElementById('search-bar');
         let currentDisplayCount = 5; // Number of facts to display initially
 
         // Function to display facts
         function displayFacts(count) {
+            factsContainer.innerHTML = ''; // Clear existing facts
             const factsToDisplay = funFacts.slice(0, count);
             factsToDisplay.forEach(fact => {
                 const factDiv = document.createElement('div');
@@ -127,6 +155,24 @@
                 factDiv.innerHTML = `<h2>${fact.fact}</h2><p>${fact.description}</p>`;
                 factsContainer.appendChild(factDiv);
             });
+        }
+
+        // Function to filter facts based on search input
+        function filterFacts() {
+            const searchTerm = searchBar.value.toLowerCase();
+            const filteredFacts = funFacts.filter(fact => 
+                fact.fact.toLowerCase().includes(searchTerm) || 
+                fact.description.toLowerCase().includes(searchTerm)
+            );
+            factsContainer.innerHTML = ''; // Clear existing facts
+            filteredFacts.forEach(fact => {
+                const factDiv = document.createElement('div');
+                factDiv.classList.add('fact');
+                factDiv.innerHTML = `<h2>${fact.fact}</h2><p>${fact.description}</p>`;
+                factsContainer.appendChild(factDiv);
+            });
+            currentDisplayCount = filteredFacts.length; // Update current display count
+            showMoreButton.style.display = filteredFacts.length > 5 ? 'block' : 'none'; // Show button if more than 5 facts
         }
 
         // Show initial facts
@@ -141,6 +187,9 @@
                 showMoreButton.style.display = 'none';
             }
         });
+
+        // Search functionality
+        searchBar.addEventListener('input', filterFacts);
     </script>
 </body>
 </html>
